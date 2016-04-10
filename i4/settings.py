@@ -14,6 +14,7 @@ BOT_NAME = 'i4'
 SPIDER_MODULES = ['i4.spiders']
 NEWSPIDER_MODULE = 'i4.spiders'
 
+IMAGE_STORE = './images'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'i4 (+http://www.yourdomain.com)'
@@ -61,9 +62,9 @@ NEWSPIDER_MODULE = 'i4.spiders'
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'i4.pipelines.SomePipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'i4.pipelines.I4Pipeline': 1,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
