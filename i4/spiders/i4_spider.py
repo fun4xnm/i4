@@ -6,15 +6,15 @@ from i4.items import I4Item
 class I4Spider(scrapy.Spider):
 	name = 'I4'
 	start_urls = [
-		'http://www.aitaotu.com/guonei/1611',
-		'http://www.aitaotu.com/guonei/1644',
+		'http://www.aitaotu.com/guonei/1611.html',
+		'http://www.aitaotu.com/guonei/1644.html',
 	]
 	allow_domains = ['www.aitaotu.com']
 
 	def parse(self, response):
-		links = response.xpath('//*[@id='big-pic']/p/a/img/@src').extract()
-		descs = response.xpath('//*[@id='big-pic']/p/a/img/@alt').extract()
-		title = response.xpath('//*[@id='photos']/h2/text()').extract()
+		links = response.xpath('//*[@id="big-pic"]/p/a/img/@src').extract()
+		descs = response.xpath('//*[@id="big-pic"]/p/a/img/@alt').extract()
+		title = response.xpath('//*[@id="photos"]/h2/text()').extract()
 
 		item = I4Item()
 		item['title'] = title[0]
@@ -25,7 +25,7 @@ class I4Spider(scrapy.Spider):
 			item['link'] = link
 			yield item
 
-		next_page_relative = response.xpath('//*[@id='nl']/a/@href').extract()
+		next_page_relative = response.xpath('//*[@id="nl"]/a/@href').extract()[0]
 
 		try:
 			next_page = response.urljoin(next_page_relative)
